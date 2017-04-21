@@ -18,7 +18,7 @@ public class WelcomePresenter extends WelcomeContract.Presenter {
         if (CommonUtil.checkNetwork(mContext)) {
             if (validateGetVersionName(mContext, platform, version)) {
                 v.openProgressDialog("加载中", "");
-                m.getVersionName(platform, version, new ResponseResultListener() {
+                m.getVersionName(mContext,platform, version, new ResponseResultListener() {
                     @Override
                     public void onResult(Object o) {
                         ResponseResult result = (ResponseResult) o;
@@ -44,14 +44,13 @@ public class WelcomePresenter extends WelcomeContract.Presenter {
     @Override
     public boolean validateGetVersionName(Context mContext, String platform, String version) {
         boolean loginFlag = false;
-        if (CommonUtil.isEmpty(platform)) {
-            CommonUtil.sendToast(mContext, "应用平台不能为空");
-        } else if (CommonUtil.isEmpty(version)) {
-            CommonUtil.sendToast(mContext, "应用版本号不能为空");
+        if(CommonUtil.isEmpty(platform)) {
+            CommonUtil.sendToast(mContext,"应用平台不能为空");
+        } else if(CommonUtil.isEmpty(version)) {
+            CommonUtil.sendToast(mContext,"密码不能为空");
         } else {
             loginFlag = true;
         }
         return loginFlag;
     }
-
-}
+    }

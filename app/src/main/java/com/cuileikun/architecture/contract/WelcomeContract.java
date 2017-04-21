@@ -24,7 +24,7 @@ public interface WelcomeContract {
          * @param version
          * @param listener
          */
-        public void getVersionName(String platform, String version, ResponseResultListener listener);
+        public void getVersionName(Context mContext,String platform, String version, ResponseResultListener listener);
     }
 
     interface View extends BaseView {

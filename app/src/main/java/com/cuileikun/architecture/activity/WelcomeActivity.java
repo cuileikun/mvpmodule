@@ -2,13 +2,17 @@ package com.cuileikun.architecture.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
+import com.alibaba.fastjson.JSON;
 import com.cuileikun.architecture.R;
+import com.cuileikun.architecture.bean.VersionBean;
 import com.cuileikun.architecture.contract.WelcomeContract;
 import com.cuileikun.architecture.model.WelcomeModel;
 import com.cuileikun.architecture.presenter.WelcomePresenter;
+import com.qk.applibrary.util.CommonUtil;
 
 public class WelcomeActivity extends QkActivity<WelcomePresenter, WelcomeModel> implements WelcomeContract.View {
     public static WelcomeActivity mInstance = null;
@@ -36,6 +40,8 @@ public class WelcomeActivity extends QkActivity<WelcomePresenter, WelcomeModel> 
     private View.OnClickListener getVersionNameListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            mPresenter.sendGetVersionNameRequest("2", CommonUtil.getVersionCode(mContext));
+
 
         }
     };
@@ -47,6 +53,11 @@ public class WelcomeActivity extends QkActivity<WelcomePresenter, WelcomeModel> 
 
     @Override
     public void getVersionNameSuccess(String json) {
+        VersionBean versionBean = JSON.parseObject(json, VersionBean.class);
+//        String version = versionBean.getVersion();
+//        String url = versionBean.getUrl();
+        CommonUtil.sendToast(mContext,"获取版本号成功++++++");
+        startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
 
     }
 
