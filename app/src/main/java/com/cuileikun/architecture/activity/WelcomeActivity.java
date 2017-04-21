@@ -54,9 +54,9 @@ public class WelcomeActivity extends QkActivity<WelcomePresenter, WelcomeModel> 
     @Override
     public void getVersionNameSuccess(String json) {
         VersionBean versionBean = JSON.parseObject(json, VersionBean.class);
-//        String version = versionBean.getVersion();
-//        String url = versionBean.getUrl();
-        CommonUtil.sendToast(mContext,"获取版本号成功++++++");
+        String version = versionBean.getVersion();
+        String url = versionBean.getUrl();
+        CommonUtil.sendToast(mContext,"获取版本号成功++++++"+version+url);
         startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
 
     }

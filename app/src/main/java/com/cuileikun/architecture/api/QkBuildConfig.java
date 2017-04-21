@@ -63,6 +63,7 @@ public class QkBuildConfig extends BaseBuildConfig {
     public void switchOfficial() {
         connect.setApiUrl("https://api-dev.qingkepay.com:10080"); //开发环境 https
         connect.setH5Url("https://dev.qingkepay.com:10080");
+
     }
 
     /**
